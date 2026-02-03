@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime, timedelta, UTC
 
-from jose import JWTError, jwt
+from jose import JWTError, jwt, ExpiredSignatureError
 from passlib.context import CryptContext
 from fastapi import HTTPException, status
 
@@ -41,5 +41,7 @@ def verify_token(token: str) -> dict:
         if not payload.get("sub"):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
         return payload
+    except ExpiredSignatureError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token has expired")
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")

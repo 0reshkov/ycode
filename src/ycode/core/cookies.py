@@ -39,6 +39,7 @@ def set_refresh_token_cookie(response: Response, subject: int | str, jti: str | 
 def set_auth_cookies(response: Response, subject: int | str, jti: str | None = None) -> dict:    
     access_token = set_access_token_cookie(response, subject)
     refresh_token = set_refresh_token_cookie(response, subject, jti)
+    # TODO: Добавить токены в базу данных для возможности их отзыва
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,

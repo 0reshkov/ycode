@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.ycode.core.config import settings
 from src.ycode.api.v1.auth.routes import auth_router
+from src.ycode import router as root_router
 
 
 app = FastAPI(
@@ -22,3 +23,4 @@ app.add_middleware(
 
 
 app.include_router(auth_router, prefix="/api/v1/auth", tags=["auth"])
+app.include_router(root_router, tags=["root"])

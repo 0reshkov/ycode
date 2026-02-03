@@ -29,6 +29,18 @@ class Settings(BaseSettings):
 
     REDIS_URL: str = "redis://localhost:6379/0"
 
-    ALLOWED_ORIGINS: list[str]
+    ALLOWED_ORIGINS: list[str] = []
+
+    # Yandex ID OAuth/OIDC
+    YANDEX_CLIENT_ID: str = "8b4247a8c6e949668bd64b75236afcd8"
+    YANDEX_CLIENT_SECRET: str = "9fdcc620f6074059b363bddc6d10e615"
+    YANDEX_AUTH_URL: str = "https://oauth.yandex.ru/authorize"
+    YANDEX_TOKEN_URL: str = "https://oauth.yandex.ru/token"
+    YANDEX_USERINFO_URL: str = "https://login.yandex.ru/info"
+    YANDEX_JWKS_URL: str = "https://login.yandex.ru/jwks"
+    YANDEX_REDIRECT_URI: str = "http://localhost:8000/auth/yandex/callback"
+    YANDEX_SCOPES: list[str] = ["login:email", "login:info", "login:phone"]
+
+    YANDEX_STATE_NAME: str = "yandex_oauth_state"
 
 settings = Settings()  # type: ignore

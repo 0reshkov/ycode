@@ -7,7 +7,7 @@ class UserRegistrationSchema(BaseModel):
     password: str = Field(..., min_length=8, description="The user's password")
     phone: str = Field(
         ...,
-        regex=r'^\+?[1-9]\d{1,14}$',
+        pattern=r'^\+?[1-9]\d{1,14}$',
         description="The user's phone number in international format"
     )
 

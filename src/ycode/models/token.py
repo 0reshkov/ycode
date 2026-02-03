@@ -16,4 +16,8 @@ class RefreshToken(Base):
     revoked: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
-    user = relationship("User", back_populates="refresh_tokens")
+    user = relationship(
+        "User",
+        back_populates="refresh_tokens",
+        passive_deletes=True
+    )
